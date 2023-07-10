@@ -13,9 +13,6 @@ var connection = mysql.createConnection({
 const app = express();
 app.use(cors("*"));
 
-app.get("/", (request, response) => {
-  response.send("hello from node ");
-});
 
 app.get("/emps", (request, response) => {
   var queryToFire = "select * from Employee_Tb";
@@ -32,20 +29,20 @@ app.get("/emps", (request, response) => {
   });
 });
 
-app.post("/emps", (request, response) => {
-  var queryToFire = "insert into Employee_Tb";
-  connection.query(queryToFire, (error, result) => {
-    if (error == null) {
-      var dataInString = JSON.stringify(result);
-      response.setHeader("Content-Type", "application/json");
-      response.send(dataInString);
-    } else {
-      console.log(error);
-      response.setHeader("Content-Type", "application/json");
-      response.send(error);
-    }
-  });
-});
+// app.post("/emps", (request, response) => {
+//   var queryToFire = "insert into Employee_Tb values(id,e_name,email,password,emp_id,dname,doj)";
+//   connection.query(queryToFire, (error, result) => {
+//     if (error == null) {
+//       var dataInString = JSON.stringify(result);
+//       response.setHeader("Content-Type", "application/json");
+//       response.send(dataInString);
+//     } else {
+//       console.log(error);
+//       response.setHeader("Content-Type", "application/json");
+//       response.send(error);
+//     }
+//   });
+// });
 
 
 
